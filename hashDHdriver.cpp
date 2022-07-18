@@ -43,12 +43,18 @@ int main(int argc, char* argv[]){
     HashTable hashT = HashTable(10009);
     //hashT.printTable();
     int timesThru = 0;
+    bool test;
 
     for(int i = 0; i < 50; i++){
         auto start = chrono::steady_clock::now();
         for(int j = 0; j < 200; j++){
-            hashT.insertItem(data[j + timesThru]);
+            test = hashT.insertItem(data[j + timesThru]);
             //hashT.printTable();
+            // if(!test){
+            //     cout << data[j + timesThru] << endl;
+            //     cout << j + timesThru << endl;
+            //     cout << endl;
+            // }
         }
         //cout << i << ": here" << endl;
         auto end = chrono::steady_clock::now();

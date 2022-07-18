@@ -9,6 +9,7 @@ HashTable::HashTable(int bsize){
     table = hashTable;
     for(int i = 0; i < bsize; i++){
         table[i] = -1;
+        cout << i << ": " << table[i] << "  ";
     }
     
 }
@@ -21,14 +22,14 @@ bool HashTable::insertItem(int key){
         if(table[index] == -1){
             table[index] = key;
             keyInserted = true;
+            return true;
+        }
+        else if(tempCollisions > 10009){
+            return false;
         }
         else{
             tempCollisions++;
-            
             index = (hashFunction(key) + (tempCollisions * hashFunctionDH(key))) % tableSize;
-            if(tempCollisions > 5){
-                cout << index << endl;
-            }
         }
     }
     numOfcolision += tempCollisions;
